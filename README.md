@@ -10,7 +10,7 @@ Simple dockerization of the [Radicale](https://radicale.org/2.1.html) CalDav/Car
 
 Build the image
 ```bash
-docker build -t radicale:testing .
+docker build -t radicale:latest .
 ```
 
 Copy the config from this repository to `$RADICALE_DIR`
@@ -21,18 +21,24 @@ cp config.ini $RADICALE_DIR
 Run it
 ```bash
 docker run \
-    -it \
-    --rm  \
+    -d \
+    --restart unless-stopped
     -v $RADICALE_DIR:/srv/radicale \
     -p $PORT:5232 \
     --name radicale \
-    radicale:testing
+    radicale:latest
 ```
 
-## Create user
+## Create accounts
 
 ```
-docker exec -it radicale htpasswd -B /srv/radicale/users $USERNAME
+sudo htpasswd -B /srv/radicale/users $USERNAME
 ```
 
-No need to restart the server afterward
+## Create radicale system user and change permissions
+
+```
+sudo adduser --gid 2999 --uid 2999 --shell /bin/false --disabled-password --no-create-home radicale
+sudo chown -R radicale:radicale /srv/radicale
+sudo chmod 0600 /srv/radicale/users
+```
