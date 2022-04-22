@@ -10,12 +10,26 @@ git clone https://github.com/Potatochurchman/radicale-docker.git
 docker build -t radicale:latest .
 ```
 
-Copy the config from this repository to `$RADICALE_DIR`
-```
+Copy the config
+```bash
 cp config.ini /srv/radicale
 ```
 
-Run it
+## Create accounts
+
+```bash
+sudo htpasswd -B /srv/radicale/users $USERNAME
+```
+
+## Create radicale system user and change permissions
+
+```bash
+sudo adduser --gid 2999 --uid 2999 --shell /bin/false --disabled-password --no-create-home radicale
+sudo chown -R radicale:radicale /srv/radicale
+sudo chmod 0600 /srv/radicale/users
+```
+
+## Run the container
 ```bash
 docker run \
     -d \
@@ -24,18 +38,4 @@ docker run \
     -p 5232:5232 \
     --name radicale \
     radicale:latest
-```
-
-## Create accounts
-
-```
-sudo htpasswd -B /srv/radicale/users $USERNAME
-```
-
-## Create radicale system user and change permissions
-
-```
-sudo adduser --gid 2999 --uid 2999 --shell /bin/false --disabled-password --no-create-home radicale
-sudo chown -R radicale:radicale /srv/radicale
-sudo chmod 0600 /srv/radicale/users
 ```
