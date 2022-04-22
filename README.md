@@ -4,18 +4,15 @@ Simple dockerization of the [Radicale](https://radicale.org/2.1.html) CalDav/Car
 
 ## Setup
 
-*Variables*
-* `$RADICALE_DIR`: Folder on host file system where radicale related stuff will be stored
-* `$PORT`: Exposed port on host machine
-
-Build the image
+Clone the repo and build the image
 ```bash
+git clone https://github.com/Potatochurchman/radicale-docker.git
 docker build -t radicale:latest .
 ```
 
 Copy the config from this repository to `$RADICALE_DIR`
 ```
-cp config.ini $RADICALE_DIR
+cp config.ini /srv/radicale
 ```
 
 Run it
@@ -23,8 +20,8 @@ Run it
 docker run \
     -d \
     --restart unless-stopped
-    -v $RADICALE_DIR:/srv/radicale \
-    -p $PORT:5232 \
+    -v /srv/radicale:/srv/radicale \
+    -p 5232:5232 \
     --name radicale \
     radicale:latest
 ```
