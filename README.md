@@ -4,24 +4,19 @@ Simple dockerization of the [Radicale](https://radicale.org/2.1.html) CalDav/Car
 
 ## Setup
 
-Clone the repo and build the image
+Clone the repo and copy the config
 ```bash
 git clone https://github.com/Potatochurchman/radicale-docker.git
-docker build -t radicale:latest .
-```
-
-Copy the config
-```bash
 cp config.ini /srv/radicale
 ```
 
-## Create accounts
+Create accounts
 
 ```bash
 sudo htpasswd -B /srv/radicale/users $USERNAME
 ```
 
-## Create radicale system user and change permissions
+Create radicale system user and change permissions
 
 ```bash
 sudo adduser --gid 2999 --uid 2999 --shell /bin/false --disabled-password --no-create-home radicale
@@ -29,7 +24,10 @@ sudo chown -R radicale:radicale /srv/radicale
 sudo chmod 0600 /srv/radicale/users
 ```
 
-## Run the container
+## Build and run the container
+```bash
+docker build -t radicale:latest .
+```
 ```bash
 docker run \
     -d \
