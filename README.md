@@ -13,7 +13,7 @@ cp config.ini /srv/radicale
 Create accounts
 
 ```bash
-sudo htpasswd -B /srv/radicale/users $USERNAME
+sudo htpasswd -cB /srv/radicale/users $USERNAME
 ```
 
 Create radicale system user and change permissions
@@ -28,6 +28,7 @@ sudo chmod 0600 /srv/radicale/users
 ```bash
 docker build -t radicale:latest .
 ```
+
 ```bash
 docker run \
     -d \
