@@ -27,11 +27,11 @@ sudo chmod 0600 /srv/radicale/users
 
 ## Build and run the container
 ```bash
-docker build -t radicale:latest .
+sudo docker build -t radicale:latest .
 ```
 
 ```bash
-docker run \
+sudo docker run \
     -d \
     --restart unless-stopped \
     -v /srv/radicale:/srv/radicale \
