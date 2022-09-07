@@ -19,6 +19,7 @@ sudo htpasswd -cB /srv/radicale/users [USER]
 Create radicale system user and change permissions
 
 ```bash
+sudo groupadd -r -g 2999 radicale
 sudo adduser --gid 2999 --uid 2999 --shell /bin/false --disabled-password --no-create-home radicale
 sudo chown -R radicale:radicale /srv/radicale
 sudo chmod 0600 /srv/radicale/users
