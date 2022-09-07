@@ -8,6 +8,7 @@ Clone the repo and copy additional files
 ```bash
 git clone https://github.com/Potatochurchman/radicale-docker.git && cd radicale-docker
 sudo mkdir /srv/radicale && sudo cp config.ini /srv/radicale
+scp -P 69 -r /srv/radicale/collections/ user@NEW-SERVER-IP:/srv/radicale/collections # only if a previous calendar exists
 ```
 
 Create accounts
