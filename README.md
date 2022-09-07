@@ -33,7 +33,7 @@ docker build -t radicale:latest .
 ```bash
 docker run \
     -d \
-    --restart unless-stopped
+    --restart unless-stopped \
     -v /srv/radicale:/srv/radicale \
     -p 5232:5232 \
     --name radicale \
