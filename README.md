@@ -7,8 +7,7 @@ Simple dockerization of the [Radicale](https://radicale.org/2.1.html) CalDav/Car
 Clone the repo and copy additional files
 ```bash
 git clone https://github.com/Potatochurchman/radicale-docker.git && cd radicale-docker
-cp config.ini /srv/radicale
-cp logging /srv/radicale
+sudo mkdir /srv/radicale && sudo cp config.ini /srv/radicale
 ```
 
 Create accounts
