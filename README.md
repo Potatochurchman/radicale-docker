@@ -13,7 +13,7 @@ sudo mkdir /srv/radicale && sudo cp config.ini /srv/radicale
 Create accounts
 
 ```bash
-sudo htpasswd -cB /srv/radicale/users $USERNAME
+sudo htpasswd -cB /srv/radicale/users [USER]
 ```
 
 Create radicale system user and change permissions
